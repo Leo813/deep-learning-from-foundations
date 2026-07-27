@@ -20,10 +20,8 @@ The notebook contains the structured notes for this part, including definitions,
 
 - Probability as a measure on events
 - Probability axioms and basic properties
-- Inclusion-exclusion
 - Uniform probability on finite sample spaces
 - Non-uniform probability measures
-- Birthday problem
 - Conditional probability
 - Bayes' theorem
 - Independence
@@ -40,9 +38,6 @@ The notebook contains the structured notes for this part, including definitions,
 - Joint distributions
 - Conditional distributions
 - Independence of random variables
-- I.i.d. samples
-- Multinomial distribution
-- Order statistics
 - Multidimensional change of variable and Jacobian determinant
 - Convolution
 - Simulation and inverse-CDF sampling

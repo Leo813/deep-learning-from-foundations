@@ -47,11 +47,11 @@ A second major idea was distinguishing different ways of describing variability 
 The variance of a sum also showed why dependence matters:
 
 ```math
-\mathrm{Var}(\sum_i X_i)
+Var(\sum_i X_i)
 =
-\sum_i \mathrm{Var}(X_i)
+\sum_i Var(X_i)
 +
-2\sum_{i<j}\mathrm{Cov}(X_i,X_j).
+2\sum_{i < j} Cov(X_i, X_j)
 ```
 
 For independent random variables, the covariance terms vanish, so their variances add. This result becomes especially important when working with sums and sample means.

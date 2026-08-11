@@ -47,7 +47,7 @@ A second major idea was distinguishing different ways of describing variability 
 The variance of a sum also showed why dependence matters:
 
 ```math
-\mathrm{Var}\left(\sum_i X_i\right)
+\mathrm{Var}(\sum_i X_i)
 =
 \sum_i \mathrm{Var}(X_i)
 +

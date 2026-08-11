@@ -23,7 +23,6 @@ The notebook contains the structured notes for this part, including definitions,
 - Linearity and monotonicity of expectation
 - Variance and standard deviation
 - Covariance and correlation
-- Variance of sums and the role of covariance
 - Probability-generating functions
 - Moment-generating functions
 - Characteristic functions
@@ -48,11 +47,11 @@ A second major idea was distinguishing different ways of describing variability 
 The variance of a sum also showed why dependence matters:
 
 ```math
-\operatorname{Var}\left(\sum_i X_i\right)
+\mathrm{Var}\left(\sum_i X_i\right)
 =
-\sum_i \operatorname{Var}(X_i)
+\sum_i \mathrm{Var}(X_i)
 +
-2\sum_{i<j}\operatorname{Cov}(X_i,X_j).
+2\sum_{i<j}\mathrm{Cov}(X_i,X_j).
 ```
 
 For independent random variables, the covariance terms vanish, so their variances add. This result becomes especially important when working with sums and sample means.

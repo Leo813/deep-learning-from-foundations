@@ -12,34 +12,26 @@ This part contains two complementary notebooks:
 
 
 Start with the main notebook:
-
 [`Sampling_distributions_and_limits.ipynb`](./Sampling_distributions_and_limits.ipynb)
 - **Main learning notebook:** the structured notes for Chapter 4, including definitions, derivations, conceptual explanations, interpretations, and the main mathematical results.
 
 [`Computer_exercises.ipynb`](./Computer_exercises.ipynb)
 - **Computer exercises notebook:** implementations of representative textbook exercises, with explanations of the core idea demonstrated by each simulation and what the numerical results illustrate.
 
-The main notebook develops the theory and learning process. The computer-exercise notebook focuses on using simulation to observe and apply that theory.
+The main notebook contains the substantive mathematical explanations and learning notes, while the computer-exercise notebook provides the practical simulation and implementation work.
 
 ## Topics Included
 
 ### Chapter 4: Sampling Distributions and Limits
 
 - Sampling distributions of statistics
-- Sample means and their variability
-- Convergence in probability
-- Weak Law of Large Numbers
+- Convergence in probability and the Weak Law of Large Numbers
 - Almost-sure convergence and the Strong Law of Large Numbers
 - Convergence in distribution
 - Central Limit Theorem
 - Standard deviation and standard error
 - Monte Carlo approximation
-- Monte Carlo approximation of sampling distributions
-- Linear combinations of independent normal random variables
-- Chi-squared distribution
-- Sampling distribution of the sample variance
-- $t$ distribution
-- $F$ distribution
+- Normal Distribution Theory
 
 ## Main Takeaways
 
@@ -121,7 +113,7 @@ Each exercise is accompanied by notes explaining the concept it represents and w
 
 ## Connections to Later Topics
 
-Several ideas from this part will be used directly in later statistical and machine-learning topics:
+Several ideas from this part may be involved in later statistical and machine-learning topics:
 
 - **Statistical Inference:** sampling distributions and standard errors provide the basis for reasoning about estimator uncertainty.
 - **Maximum Likelihood Estimation:** consistency and asymptotic normality rely on the same convergence ideas developed here.
@@ -129,9 +121,3 @@ Several ideas from this part will be used directly in later statistical and mach
 - **Stochastic Gradient Descent:** mini-batch gradients are random sample-based estimates of population quantities, making variance and sample-size effects directly relevant.
 - **Machine Learning Evaluation:** empirical averages approximate expected performance, while sampling variability determines how stable those estimates are.
 - **Modern Probabilistic Computation:** Monte Carlo methods generalize into major computational techniques for approximating otherwise intractable quantities.
-
-## Repository Note
-
-This README is intentionally a chapter-level overview. It summarizes the purpose, scope, main ideas, and computational work of this part without reproducing the full derivations or exercise solutions.
-
-The main notebook contains the substantive mathematical explanations and learning notes, while the computer-exercise notebook provides the practical simulation and implementation work.

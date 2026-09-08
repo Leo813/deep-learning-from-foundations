@@ -12,6 +12,7 @@ This part contains two complementary notebooks:
 
 
 Start with the main notebook:
+
 [`Sampling_distributions_and_limits.ipynb`](./Sampling_distributions_and_limits.ipynb)
 - **Main learning notebook:** the structured notes for Chapter 4, including definitions, derivations, conceptual explanations, interpretations, and the main mathematical results.
 
@@ -113,7 +114,7 @@ Each exercise is accompanied by notes explaining the concept it represents and w
 
 ## Connections to Later Topics
 
-Several ideas from this part may be involved in later statistical and machine-learning topics:
+Several ideas from this part may be involved in later statistics and machine-learning topics:
 
 - **Statistical Inference:** sampling distributions and standard errors provide the basis for reasoning about estimator uncertainty.
 - **Maximum Likelihood Estimation:** consistency and asymptotic normality rely on the same convergence ideas developed here.

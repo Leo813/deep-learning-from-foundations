@@ -1,163 +1,141 @@
-# Probability Foundations Part 4
+# Probability Foundations — Part 4: Statistical and Likelihood Inference
 
-## Statistical and Likelihood Inference
+This folder documents the transition from **probability theory** to **statistical inference**.
 
-This folder documents the fourth part of my probability foundations review. It focuses on the transition from probability theory to statistical inference: using observed data to learn about an unknown probability distribution, its parameters, and the uncertainty associated with statistical estimates.
+Earlier parts mainly assumed that a probability model was known and asked what could be deduced from it. Here, the direction is reversed: we observe data and use them to reason about an unknown distribution or its parameters.
 
-The goal of this part is to build the statistical foundation needed for later machine-learning topics. In particular, it develops the ideas behind likelihood, maximum likelihood estimation, estimator uncertainty, confidence intervals, hypothesis testing, and bootstrap methods.
+The material is based primarily on **Chapter 5: Statistical Inference** and **Chapter 6: Likelihood Inference** from the probability textbook used in this learning project. The focus is selective and ML-oriented: the goal is to understand the statistical ideas that will be most useful later in machine learning rather than reproduce every subsection of the text.
 
-## What to Open
+## Files in This Folder
 
-This part contains two complementary notebooks:
+### [`probability_foundations_part4_statistical_likelihood_inference.ipynb`](./probability_foundations_part4_statistical_likelihood_inference.ipynb)
 
-Start with the main notebook:
+The main learning notebook.
 
-[`probability_foundations_part4_statistical_likelihood_inference.ipynb`](./probability_foundations_part4_statistical_likelihood_inference.ipynb)
-- **Main learning notebook:** the structured learning notes for Chapters 5 and 6, including definitions, mathematical derivations, conceptual explanations, corrected misunderstandings, and connections to machine learning.
+It combines the important theory, mathematical derivations, questions raised during the reading, corrected misconceptions, and connections to later machine-learning concepts.
 
-[`probability_foundations_part4_computer_exercises.ipynb`](./probability_foundations_part4_computer_exercises.ipynb)
-- **Computer exercises notebook:** selected and adapted textbook exercises together with additional simulations that demonstrate likelihood optimization, estimator behavior, confidence-interval coverage, power, and bootstrap methods.
+Main topics include:
 
-The main notebook contains the substantive theory and learning notes, while the computer-exercise notebook provides the practical simulation and implementation work.
+- statistical models, parameters, and parameter spaces;
+- population size $N$ versus sample size $n$;
+- simple random sampling and approximate i.i.d. sampling;
+- empirical distributions and descriptive statistics;
+- likelihood, sufficient, and minimal sufficient statistics;
+- maximum likelihood estimation;
+- log-likelihood, score functions, gradients, and optimization;
+- bias, variance, MSE, and consistency;
+- standard deviation versus standard error;
+- confidence intervals;
+- hypothesis testing, z-tests, and P-values;
+- distribution-free inference and bootstrapping.
 
-## Topics Included
+### [`probability_foundations_part4_computer_exercises.ipynb`](./probability_foundations_part4_computer_exercises.ipynb)
 
-### Chapter 5: Statistical Inference
+A separate computational-practice notebook.
 
-- Statistical models and parameter spaces
-- Population size $N$ and sample size $n$
-- Random sampling and approximate i.i.d. sampling
-- Empirical distributions
-- Sample mean, sample variance, and quantiles
-- Robust summaries such as the median and IQR
-- Basic forms of statistical inference
+Rather than reproducing every textbook computer exercise, it selects and adapts the exercises that best reinforce the main ideas from this part. It also adds several small experiments that connect the statistical theory more directly to later ML work.
 
-### Chapter 6: Likelihood Inference
+It includes:
 
-- Likelihood and likelihood ratios
-- Sufficient statistics
-- Maximum likelihood estimation
-- Log-likelihood and score functions
-- Bias, variance, and mean-squared error
-- Standard deviation and standard error
-- Consistency
-- Confidence intervals
-- Hypothesis testing and P-values
-- Statistical significance and practical significance
-- Power and sample-size planning
-- Distribution-free methods
-- Method of moments
-- Bootstrap inference
+1. numerical MLE and likelihood visualization;
+2. likelihood versus log-likelihood;
+3. MLE variance versus the unbiased sample variance;
+4. empirical bias, variance, and MSE;
+5. standard error under repeated sampling;
+6. confidence-interval coverage simulations;
+7. power as a function of sample size;
+8. sample-size planning;
+9. bootstrap sampling distributions and standard errors;
+10. robustness of the mean versus the median.
 
-## Main Takeaways
+## Core Perspective
 
-The major conceptual shift in this part is the change in direction between probability and statistics.
-
-In probability, the model is treated as known and we reason about possible data:
+The central change in viewpoint is:
 
 ```math
-\text{model}
-\;\longrightarrow\;
-\text{data}.
+\text{Probability: model} \rightarrow \text{data}
 ```
 
-In statistical inference, the data are observed and we reason about an unknown model or parameter:
+versus
 
 ```math
-\text{data}
-\;\longrightarrow\;
-\text{model / parameter}.
+\text{Statistics: data} \rightarrow \text{model / parameter}
 ```
 
-A statistical model is a family of candidate probability distributions,
+A statistical model is written as
 
 ```math
 \{P_\theta : \theta \in \Omega\},
 ```
 
-where $\theta$ indexes the possible distributions in the model family.
+where $\theta$ indexes the candidate probability distributions.
 
 After observing data $s$, the likelihood is
 
 ```math
-L(\theta \mid s) = f_\theta(s).
+L(\theta \mid s) = f_\theta(s),
 ```
 
-Here, the observed data are fixed while $\theta$ varies. Likelihood therefore measures the relative support that the observed data provide for different parameter values. It should not be interpreted as the posterior probability $P(\theta\mid s)$.
+with the data held fixed and $\theta$ allowed to vary.
 
-Maximum likelihood estimation chooses the parameter value that maximizes the likelihood:
+Maximum likelihood estimation then becomes an optimization problem:
 
 ```math
 \hat{\theta}_{\mathrm{MLE}}
 \in
-\arg\max_{\theta \in \Omega}
-L(\theta \mid s).
+\arg\max_{\theta \in \Omega} L(\theta \mid s)
+=
+\arg\max_{\theta \in \Omega} \ell(\theta \mid s),
 ```
 
-Because the logarithm is strictly increasing, the same estimate can be obtained by maximizing the log-likelihood:
+where
+
+```math
+\ell(\theta \mid s) = \log L(\theta \mid s).
+```
+
+For i.i.d. data,
 
 ```math
 \ell(\theta \mid x_{1:n})
 =
-\sum_{i=1}^{n}
-\log f_\theta(x_i).
+\sum_{i=1}^{n}\log f_\theta(x_i),
 ```
 
-This product-to-sum transformation is one of the strongest connections between classical statistics and optimization-based machine learning.
+which is one of the most direct bridges from classical statistics to optimization-based machine learning.
 
-Another important theme is that an estimator is itself a random variable before the sample is observed. Its quality can therefore be studied through its sampling distribution.
+## Key Takeaways
 
-For an estimator $T$ of a target $\psi(\theta)$,
+- A **parameter** $\theta$ describes the unknown characteristics that identify a distribution within an assumed model family.
+- A **statistic** is computed from data; an estimator is random before the sample is observed, while its realized estimate is numerical.
+- Larger samples usually reduce estimator variability, while sampling without replacement is approximately i.i.d. when $n/N$ is small.
+- A **sufficient statistic** reduces the raw data while preserving the likelihood information relevant to $\theta$.
+- Likelihood is about relative support for different parameter values; it is not the same as $P(\theta\mid s)$.
+- The MLE is the parameter value best supported by the observed data within the assumed model.
+- Estimator accuracy is not described by bias alone:
 
 ```math
-\operatorname{MSE}_\theta(T)
+\mathrm{MSE}(T)
 =
-\operatorname{Var}_\theta(T)
+\mathrm{Var}(T)
 +
-\left(
-E_\theta[T]-\psi(\theta)
-\right)^2.
+\mathrm{Bias}(T)^2.
 ```
 
-This separates estimation error into **variance** and **squared bias**.
+- **Standard deviation** measures the spread of observations, while **standard error** measures the spread of an estimator across repeated samples.
+- A P-value measures how extreme the observed result is under the null hypothesis; it is not the probability that the null hypothesis is true.
+- Statistical significance and practical significance are different concepts.
+- Bootstrapping approximates sampling behavior by resampling from the empirical distribution with replacement.
 
-The distinction between standard deviation and standard error was also important. Standard deviation describes the spread of observations, whereas standard error describes the spread of an estimator across repeated samples. For the sample mean,
+## Scope
 
-```math
-SE(\bar X)
-=
-\frac{\sigma}{\sqrt{n}}.
-```
+This folder emphasizes the parts of Chapters 5–6 that are most useful for progressing toward machine learning. Some lower-priority material was skimmed, omitted, or treated only briefly, including several exact-distribution details and more advanced asymptotic derivations.
 
-Thus, increasing the sample size reduces the uncertainty of the sample mean even though the population standard deviation $\sigma$ itself does not shrink.
-
-Confidence intervals and hypothesis tests use sampling distributions to quantify uncertainty. A confidence level describes the repeated-sampling coverage of the interval-producing procedure; it is not a posterior probability for the fixed parameter.
-
-Similarly, a P-value measures how extreme the observed result would be under the null hypothesis. It is not the probability that the null hypothesis is true.
-
-Bootstrap methods provide a computational alternative when an estimator's sampling distribution is difficult to derive analytically. The empirical distribution is used as an approximation to the unknown population distribution, and repeated resampling with replacement is used to approximate estimator variability.
-
-## Implementation Work Completed
-
-The computer-exercise notebook reinforces these ideas through a set of representative experiments, including:
-
-- plotting nontrivial likelihood functions and locating their numerical MLEs;
-- comparing likelihood and log-likelihood;
-- comparing the Normal variance MLE with the unbiased sample variance;
-- estimating bias, variance, and MSE through repeated simulation;
-- demonstrating how standard error decreases as sample size increases;
-- measuring empirical confidence-interval coverage;
-- plotting statistical power as a function of sample size;
-- determining sample sizes from a target confidence-interval width;
-- estimating bootstrap sampling distributions and standard errors;
-- comparing the robustness of the mean and median under outliers;
-- constructing bootstrap percentile confidence intervals.
-
-The exercises were selected and adapted from the textbook rather than reproduced exhaustively, with additional simulations included where they better reinforce the concepts emphasized in the main learning notebook.
+The purpose is to build a strong working understanding of inference, likelihood, estimation, uncertainty, and resampling before moving further into machine learning.
 
 ## Connections to Later Topics
 
-Several ideas from this part will reappear directly in machine learning:
+Several ideas from this part may reappear in the next chapters or machine learning:
 
 - **Maximum Likelihood Estimation:** many learning objectives are derived by maximizing likelihood or minimizing negative log-likelihood.
 - **Optimization:** score functions, gradients, and likelihood maximization lead naturally to gradient-based parameter learning.
@@ -166,3 +144,4 @@ Several ideas from this part will reappear directly in machine learning:
 - **Model Evaluation:** confidence intervals, standard errors, and resampling methods help quantify uncertainty in empirical performance estimates.
 - **Bootstrap and Ensembles:** resampling ideas later appear in bootstrap-based uncertainty estimation and ensemble methods such as bagging.
 - **Bayesian Inference:** likelihood remains a central component when moving from frequentist inference to posterior inference.
+

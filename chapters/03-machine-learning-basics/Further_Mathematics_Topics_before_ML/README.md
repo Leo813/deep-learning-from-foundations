@@ -4,7 +4,7 @@ This folder explores three mathematical foundations that connect probability the
 
 ## Notebook
 
-**[Mathematic Topics toward Machine Learning.ipynb](./Mathematic%20Topics%20toward%20Machine%20Learning.ipynb)** — the complete set of notes, worked examples, and computational demonstrations.
+**[Mathematic Topics toward Machine Learning.ipynb](./Mathematic_Topics_toward_Machine_Learning.ipynb)** — the complete set of notes, worked examples, and computational demonstrations.
 
 ## Topics Covered
 
